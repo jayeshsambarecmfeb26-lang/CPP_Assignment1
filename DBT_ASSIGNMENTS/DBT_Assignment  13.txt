@@ -1,0 +1,101 @@
+                                               Assignment – 13
+Using the UNION clause.
+1) Create a union of two queries that shows the names, cities, and ratings of all 
+customers. Those with rating of 200 or greater will also have the words “High 
+Rating”, while the others will have the words “Low Rating”. 
+
+mysql> SELECT cname, city, rating, 'High Rating' AS Rating_Status
+    -> FROM Customers
+    -> WHERE rating >= 200
+    ->
+    -> UNION
+    ->
+    -> SELECT cname, city, rating, 'Low Rating' AS Rating_Status
+    -> FROM Customers
+    -> WHERE rating < 200;
++----------+----------+--------+---------------+
+| cname    | city     | rating | Rating_Status |
++----------+----------+--------+---------------+
+| Giovanni | Rome     |    200 | High Rating   |
+| Liu      | San jose |    200 | High Rating   |
+| Grass    | Berlin   |    300 | High Rating   |
+| Cisneros | Jose     |    300 | High Rating   |
+| Hoffman  | Londan   |    100 | Low Rating    |
+| Clemens  | London   |    100 | Low Rating    |
+| Pereria  | Rome     |    100 | Low Rating    |
++----------+----------+--------+---------------+
+7 rows in set (0.01 sec)
+
+2) Write a command that produces the name and number of each salesperson and 
+each customer with more than one current order. Put the results in alphabetical 
+order. 
+
+mysql> SELECT sname AS Name, snum AS Number
+    -> FROM Salespeople
+    -> WHERE snum IN (
+    ->     SELECT snum
+    ->     FROM Orders
+    ->     GROUP BY snum
+    ->     HAVING COUNT(*) > 1
+    -> )
+    ->
+    -> UNION
+    ->
+    -> SELECT cname AS Name, cnum AS Number
+    -> FROM Customers
+    -> WHERE cnum IN (
+    ->     SELECT cnum
+    ->     FROM Orders
+    ->     GROUP BY cnum
+    ->     HAVING COUNT(*) > 1
+    -> )
+    -> ORDER BY Name;
++----------+--------+
+| Name     | Number |
++----------+--------+
+| Cisneros |   2008 |
+| Clemens  |   2006 |
+| Grass    |   2004 |
+| Liu      |   2003 |
+| Peel     |   1001 |
+| Rifkin   |   1007 |
+| Serres   |   1002 |
++----------+--------+
+7 rows in set (0.01 sec)
+
+3) Form a union of three queries. Have the first select the snums of all salespeople in 
+San Jose; the second, the cnums of all customers in San Jose; and the third the 
+onums of all orders on October 3. Retain duplicates between the last two queries 
+but eliminate any redundancies between either of them and the first.  
+(Note: in the sample tables as given, there would be no such redundancy. This is 
+besides the point.) 
+
+mysql> SELECT snum
+    -> FROM Salespeople
+    -> WHERE city = 'San Jose'
+    ->
+    -> UNION
+    ->
+    -> SELECT cnum
+    -> FROM Customers
+    -> WHERE city = 'San Jose'
+    ->
+    -> UNION ALL
+    ->
+    -> SELECT onum
+    -> FROM Orders
+    -> WHERE odate = '1990-10-03';
++------+
+| snum |
++------+
+| 1002 |
+| 2003 |
+| 3001 |
+| 3003 |
+| 3002 |
+| 3005 |
+| 3005 |
+| 3006 |
+| 3005 |
++------+
+9 rows in set (0.00 sec)

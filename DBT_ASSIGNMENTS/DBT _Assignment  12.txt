@@ -1,0 +1,79 @@
+                                           Assignment – 12  
+Using the operators IN, ANY, and ALL.  
+1) Write a query that selects all customers whose ratings are equal to or greater than 
+ANY of Serres’.  
+
+mysql> SELECT *
+    -> FROM Customers
+    -> WHERE rating >= ANY (
+    ->     SELECT rating
+    ->     FROM Customers
+    ->     WHERE cname = 'Serres'
+    -> );
+Empty set (0.01 sec)
+
+2) Write a query using ANY or ALL that will find all salespeople who have no 
+customers located in their city.  
+
+mysql> SELECT *
+    -> FROM Salespeople s
+    -> WHERE city <> ALL (
+    ->     SELECT city
+    ->     FROM Customers c
+    ->     WHERE c.snum = s.snum
+    -> );
++------+---------+-----------+------+
+| Snum | Sname   | City      | Comm |
++------+---------+-----------+------+
+| 1004 | Motika  | London    | 0.11 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+| 1003 | Axelord | New York  | 0.10 |
++------+---------+-----------+------+
+3 rows in set (0.01 sec)
+
+3) Write a query that selects all orders for amounts greater than any for the 
+customers in London.  
+
+mysql> SELECT *
+    -> FROM Orders
+    -> WHERE amt > ANY (
+    ->     SELECT amt
+    ->     FROM Orders
+    ->     WHERE cnum IN (
+    ->         SELECT cnum
+    ->         FROM Customers
+    ->         WHERE city = 'London'
+    ->     )
+    -> );
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3011 | 9891.90 | 1990-10-06 | 2006 | 1001 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
++------+---------+------------+------+------+
+4 rows in set (0.00 sec)
+
+4) Write the above query using MIN or MAX.  
+
+mysql> SELECT *
+    -> FROM Orders
+    -> WHERE amt > (
+    ->     SELECT MIN(amt)
+    ->     FROM Orders
+    ->     WHERE cnum IN (
+    ->         SELECT cnum
+    ->         FROM Customers
+    ->         WHERE city = 'London'
+    ->     )
+    -> );
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
+| 3011 | 9891.90 | 1990-10-06 | 2006 | 1001 |
+| 3005 | 5160.45 | 1990-10-03 | 2003 | 1002 |
++------+---------+------------+------+------+
+4 rows in set (0.00 sec)

@@ -1,0 +1,67 @@
+                                         Assignment – 11
+Subqueries.
+
+1) Write a query that uses a subquery to obtain all orders for the customer named 
+Cisneros. Assume you do not know his customer number (cnum).
+
+mysql> SELECT * FROM ORDERS
+    -> where cnum in ( select cnum
+    ->                   from customers
+    ->                  where cname='Cisneros');
+or
+   mysql> SELECT *
+    -> FROM Orders
+    -> WHERE cnum = (
+    ->     SELECT cnum
+    ->     FROM Customers
+    ->     WHERE cname = 'Cisneros'
+    -> );
+ 
++------+---------+------------+------+------+
+| Onum | Amt     | Odate      | Cnum | Snum |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1990-10-03 | 2008 | 1007 |
+| 3006 | 1098.16 | 1990-10-03 | 2008 | 1007 |
++------+---------+------------+------+------+
+2 rows in set (0.01 sec)
+
+
+ 
+2) Write a query that produces the names and ratings of all customers who have 
+above-average orders. 
+
+mysql> SELECT cname, rating
+    -> FROM Customers
+    -> WHERE cnum IN (
+    ->     SELECT cnum
+    ->     FROM Orders
+    ->     WHERE amt > (
+    ->         SELECT AVG(amt)
+    ->         FROM Orders
+    ->     )
+    -> );
++---------+--------+
+| cname   | rating |
++---------+--------+
+| Liu     |    200 |
+| Clemens |    100 |
++---------+--------+
+2 rows in set (0.01 sec)
+
+3) Write a query that selects the total amount in orders for each salesperson for 
+whom this total is greater than the amount of the largest order in the table. 
+
+mysql> SELECT snum, SUM(amt) AS total_amount
+    -> FROM Orders
+    -> GROUP BY snum
+    -> HAVING SUM(amt) > (
+    ->     SELECT MAX(amt)
+    ->     FROM Orders
+    -> );
++------+--------------+
+| snum | total_amount |
++------+--------------+
+| 1001 |     15382.09 |
+| 1002 |     16867.05 |
++------+--------------+
+2 rows in set (0.00 sec)
