@@ -1,0 +1,87 @@
+                                                   Assignment – 19
+Views.
+1) Create a view that shows all of the customers who have the highest ratings. 
+
+mysql> CREATE VIEW  Customer_Highest_Rating AS
+    -> SELECT *
+    -> FROM Customers
+    -> WHERE rating = (SELECT MAX(rating) FROM Customers);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select *
+    -> FROM Customer_Highest_Rating;
++------+----------+--------+--------+------+
+| Cnum | Cname    | City   | Rating | Snum |
++------+----------+--------+--------+------+
+| 2004 | Grass    | Berlin |    300 | 1002 |
+| 2008 | Cisneros | Jose   |    300 | 1007 |
++------+----------+--------+--------+------+
+2 rows in set (0.01 sec)
+
+
+
+
+2) Create a view that shows the number of salespeople in each city. 
+
+mysql> CREATE VIEW SalespeopleCount_City AS
+    -> SELECT city, COUNT(*) AS no_of_salespeople
+    -> FROM Salespeople
+    -> GROUP BY city;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select *
+    -> from   SalespeopleCount_City;
++-----------+-------------------+
+| city      | no_of_salespeople |
++-----------+-------------------+
+| London    |                 2 |
+| San Jose  |                 2 |
+| Barcelona |                 1 |
+| New York  |                 1 |
++-----------+-------------------+
+4 rows in set (0.01 sec)
+
+3) Create a view that shows the average and total orders for each salesperson after 
+his or her name. Assume all names are unique. 
+
+mysql> CREATE VIEW Salesperson_Order AS
+    -> SELECT s.sname,
+    ->        AVG(o.amt) AS avg_order,
+    ->        SUM(o.amt) AS total_order
+    -> FROM Salespeople s inner JOIN Orders o
+    -> ON s.snum = o.snum
+    -> GROUP BY s.sname;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select *
+    -> from Salesperson_Order ;
++---------+-------------+-------------+
+| sname   | avg_order   | total_order |
++---------+-------------+-------------+
+| Peel    |  767.190002 |      767.19 |
+| Serres  |  515.383316 |     1546.15 |
+| Motika  | 1900.099976 |     1900.10 |
+| Rifkin  |  558.425017 |     1116.85 |
+| Axelord | 1713.229980 |     1713.23 |
++---------+-------------+-------------+
+5 rows in set (0.01 sec)
+
+4) Create a view that shows each salesperson with multiple customers. 
+
+mysql> CREATE VIEW Salespeople_Mul_Customers
+    -> AS
+    -> SELECT s.sname, COUNT(c.cnum) AS customer_count
+    -> FROM Salespeople s
+    -> inner JOIN Customers c
+    -> ON s.snum = c.snum
+    -> GROUP BY s.sname
+    -> HAVING COUNT(c.cnum) > 1;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from Salespeople_Mul_Customers;
++--------+----------------+
+| sname  | customer_count |
++--------+----------------+
+| Serres |              2 |
++--------+----------------+
+1 row in set (0.00 sec)
