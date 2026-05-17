@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #eee;
+        }
+
+        .container {
+            width: 1000px;
+            margin: auto;
+            background: #6a5acd;
+            padding: 20px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            margin-top: 10px;
+        }
+
+        input, textarea, select {
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        textarea {
+            width: 200px;
+            height: 60px;
+        }
+
+        .row {
+            margin-bottom: 10px;
+        }
+
+        table {
+            margin-top: 10px;
+            width: 100%;
+            color: white;
+        }
+
+        table, th, td {
+            border: 1px solid white;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+        .btn {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>STUDENT REGISTRATION FORM</h2>
+
+    <div class="row">
+        <label>First Name</label>
+        <input type="text" maxlength="30">
+    </div>
+
+    <div class="row">
+        <label>Last Name</label>
+        <input type="text" maxlength="30">
+    </div>
+
+    <div class="row">
+        <label>Date of Birth</label>
+        <select><option>Day</option></select>
+        <select><option>Month</option></select>
+        <select><option>Year</option></select>
+    </div>
+
+    <div class="row">
+        <label>Email ID</label>
+        <input type="email">
+    </div>
+
+    <div class="row">
+        <label>Mobile Number</label>
+        <input type="text" maxlength="10">
+    </div>
+
+    <div class="row">
+        <label>Gender</label>
+        <input type="radio" name="gender"> Male
+        <input type="radio" name="gender"> Female
+    </div>
+
+    <div class="row">
+        <label>Address</label>
+        <textarea></textarea>
+    </div>
+
+    <div class="row">
+        <label>City</label>
+        <input type="text">
+    </div>
+
+    <div class="row">
+        <label>Pin Code</label>
+        <input type="text" maxlength="6">
+    </div>
+
+    <div class="row">
+        <label>State</label>
+        <input type="text">
+    </div>
+
+    <div class="row">
+        <label>Country</label>
+        <input type="text" value="India">
+    </div>
+
+    <div class="row">
+        <label>Hobbies</label>
+        <input type="checkbox"> Drawing
+        <input type="checkbox"> Singing
+        <input type="checkbox"> Dancing
+        <input type="checkbox"> Sketching
+    </div>
+
+    <div class="row">
+        <label>Qualification</label>
+        <table>
+            <tr>
+                <th>Sl.No</th>
+                <th>Examination</th>
+                <th>Board</th>
+                <th>Percentage</th>
+                <th>Year</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Class X</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Class XII</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row">
+        <label>Courses Applied</label>
+        <input type="radio" name="course"> BCA
+        <input type="radio" name="course"> B.Com
+        <input type="radio" name="course"> B.Sc
+        <input type="radio" name="course"> B.A
+    </div>
+
+    <div class="btn">
+        <button>Submit</button>
+        <button type="reset">Reset</button>
+    </div>
+
+</div>
+
+</body>
+</html>
