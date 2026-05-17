@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Use the reduce method
+ to find the total price of items in a shopping cart. -->
+
+ <script>
+
+const cartItems = 
+[
+    { name: "Pencil", price: 10 },
+    { name: "book", price: 50 }
+];
+
+const total = cartItems.reduce((sum,cartItems) => sum +cartItems.price, 0);
+
+console.log(total);
+
+ </script>
+</body>
+</html>
