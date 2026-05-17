@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body 
+        {
+             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              background-color: #f0f2f5; margin: 0; padding: 20px;
+            
+        }
+        .container { 
+            
+            max-width: 950px; 
+            margin: auto; 
+            background: #fff;
+             border: 1px solid #ced4da; 
+             box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            }
+        
+
+        .banner 
+        { 
+            background-color: #e9ecef;
+             padding: 10px;
+              border-bottom: 1px solid #dee2e6; 
+              display: flex;
+               justify-content: space-between;
+                align-items: center;
+            
+            }
+        .banner a {
+             color: #0056b3;
+              font-size: 0.85rem;
+               font-weight: bold;
+                text-decoration: none; 
+            }
+        .required-label 
+        {
+             color: #d9534f; 
+             font-size: 0.8rem;
+              font-weight: bold;
+             }
+
+        /* Table/Form Grid */
+        table 
+        { 
+            width: 100%; 
+            border-collapse: collapse;
+         }
+        td 
+        {
+             padding: 10px; 
+             border-bottom: 1px solid #f1f1f1;
+              font-size: 0.85rem;
+               vertical-align: middle;
+             }
+        .label-cell 
+        {
+             width: 25%;
+              background-color: #f8f9fa; 
+             font-weight: 500; color: #333; 
+            }
+        .input-cell 
+        {
+             width: 40%;
+             }
+        .hint-cell 
+        {
+             width: 35%; 
+             color: #6c757d; 
+             font-size: 0.75rem;
+             }
+        
+        .asterisk
+         {
+             color: red;
+             }
+
+        input[type="text"], 
+        select {
+             width: 100%;
+              padding: 6px; border: 1px solid #ccc; 
+              border-radius: 2px; box-sizing: border-box; 
+            }
+        
+      
+        .info-box {
+             background-color: #d1ecf1;
+              color: #0c5460; 
+              padding: 10px; font-size: 0.75rem;
+               line-height: 1.4; border: 1px solid #bee5eb; 
+               margin: 10px; }
+
+        .mobile-input 
+        {
+             display: flex; align-items: center; 
+             gap: 5px; }
+        .mobile-input span { font-weight: bold; }
+        .captcha-area { display: flex; align-items: center; gap: 10px; }
+        .captcha-img { background: #e0e0e0; padding: 5px 15px;
+             font-family: 'Courier New', Courier, monospace; font-weight:
+              bold; font-size: 1.2rem; letter-spacing: 3px; border: 1px solid #bbb; user-select: none; }
+        
+        .footer { background: #f8f9fa; padding: 15px; text-align: 
+            right; border-top: 1px solid #dee2e6; }
+        .btn-next { background-color: #2b5a91; 
+            color: white; border: none; padding: 10px 25px; border-radius: 4px;
+             cursor: pointer; font-weight: bold; }
+        .btn-next:hover { background-color: #1e3f66; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="banner">
+        <a href="#">Click here for Important Points to be noted</a>
+        <span class="required-label">*Mandatory Field</span>
+    </div>
+
+    <form id="regForm">
+        <table>
+            <tr>
+                <td class="label-cell">First Name: <span class="asterisk">*</span></td>
+                <td class="input-cell"><input type="text" id="fname" maxlength="35" required></td>
+                <td class="hint-cell">(Maximum 35 Characters)</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Confirm First Name: <span class="asterisk">*</span></td>
+                <td class="input-cell"><input type="text" id="cfname" maxlength="35" required></td>
+                <td class="hint-cell">(Maximum 35 Characters)</td>
+            </tr>
+
+            <tr>
+                <td class="label-cell">Last Name: <span class="asterisk">*</span></td>
+                <td class="input-cell"><input type="text" id="lname" maxlength="35" required></td>
+                <td class="hint-cell">(Maximum 35 Characters)</td>
+            </tr>
+            <tr>
+                <td class="label-cell">Confirm Last Name: <span class="asterisk">*</span></td>
+                <td class="input-cell"><input type="text" id="clname" maxlength="35" required></td>
+                <td class="hint-cell">(Maximum 35 Characters)</td>
+            </tr>
+
+            <tr>
+                <td colspan="3">
+                    <div class="info-box">
+                        The Name entered in the online application form should match exactly with the requisite documents (photo ID etc.)... 
+                        Any requests for subsequent changes will not be entertained.
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label-cell">Mobile No: <span class="asterisk">*</span></td>
+                <td class="input-cell">
+                    <div class="mobile-input">
+                        <span>+91</span>
+                        <input type="text" maxlength="10" pattern="\d{10}" required>
+                    </div>
+                </td>
+                <td class="hint-cell">(10 digits) <b>Please Do not prefix zero (0)</b></td>
+            </tr>
+
+            <tr>
+                <td class="label-cell">Email ID: <span class="asterisk">*</span></td>
+                <td class="input-cell" style="display: flex; align-items: center; gap: 5px;">
+                    <input type="text" placeholder="Username" required>
+                    <span>@</span>
+                    <select required>
+                        <option value="">Domain Names</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="yahoo.com">yahoo.com</option>
+                    </select>
+                </td>
+                <td class="hint-cell">(Maximum 60 Characters)</td>
+            </tr>
+
+            <tr>
+                <td class="label-cell">Security Code: <span class="asterisk">*</span></td>
+                <td class="input-cell">
+                    <div class="captcha-area">
+                        <input type="text" style="width: 100px;" required>
+                        <div class="captcha-img">vdwcw</div>
+                        <span style="cursor:pointer; color: #0056b3; font-size: 1.2rem;">&#8635;</span>
+                    </div>
+                </td>
+                <td class="hint-cell">Enter the Word in the textbox as in the image</td>
+            </tr>
+        </table>
+
+        <div class="footer">
+            <button type="submit" class="btn-next">Save & Next</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('regForm').onsubmit = function(e) {
+        const fname = document.getElementById('fname').value;
+        const cfname = document.getElementById('cfname').value;
+        
+        if (fname !== cfname) {
+            alert("First Names do not match!");
+            e.preventDefault();
+            return false;
+        }
+       
+    };
+</script>
+
+</body>
+</html>

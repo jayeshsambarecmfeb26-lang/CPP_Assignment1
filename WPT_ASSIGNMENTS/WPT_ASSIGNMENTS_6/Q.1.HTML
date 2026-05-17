@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Question: Create a simple shopping cart application using let, const, and var to manage
+items. Use const for constant values (like tax rates) and let for variables that might
+change (like total price). -->
+
+ <script>
+    const TAX_RATE = 0.30;
+var cart = [];
+let totalPrice = 0;
+
+function addItem(name, price)
+ {
+    cart.push({ name, price });
+    totalPrice += price;
+}
+
+addItem("Shirt", 800);
+addItem("Shoes", 2000);
+
+let tax = totalPrice * TAX_RATE;
+let finalPrice = totalPrice + tax;
+
+console.log("Cart:", cart);
+console.log("Total:", totalPrice);
+console.log("Final Price:", finalPrice);
+
+
+    </script>
+</body>
+</html>

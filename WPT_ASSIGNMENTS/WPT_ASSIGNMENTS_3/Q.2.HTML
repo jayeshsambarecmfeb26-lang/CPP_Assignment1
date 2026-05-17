@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>User form</h1>
+    First name:<input type="text" id="fname"><br><br>
+    Last name:<input type="text" id="lname"><br><br>
+    contact no:<input type="number" id="mno"><br><br>
+    Email id: <input type="email" id="eid"><br><br><br>
+
+    <button onclick="show()">submit</button>
+
+    <p  id="data"></p>
+    <script>
+
+function show()
+{
+
+    let a=document.getElementById("fname").value;
+      let b=document.getElementById("lname").value;
+        let c=document.getElementById("mno").value;
+          let d =document.getElementById("eid").value;
+
+          document.getElementById("data").innerHTML="name : "+a+"<br>"+" lastname: "+b
+          +"<br>"+" mobile no : "+c+"<br>"+" email id:"+d;
+          
+}
+
+    </script>
+</body>
+</html>
